@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "00f5b8bf-880e-4cb1-bfc4-108985abbfd3"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -97,6 +100,16 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "oshop2:build:production",
+            "firebaseProject": "oshop-bdb00",
+            "firebaseHostingSite": "oshop-bdb00"
           }
         }
       }

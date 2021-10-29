@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "oshop-bdb00": {
+      "hosting": {
+        "oshop2": [
+          "oshop-bdb00"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "oshop-bdb00"
+  }
+}
