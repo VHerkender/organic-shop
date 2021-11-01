@@ -1,21 +1,25 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule} from 'ng2-validation';
+import { DataTablesModule } from "angular-datatables"
+import { HttpClientModule } from '@angular/common/http';
+import {AfterViewInit, ViewChild} from '@angular/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 //import { AngularFireDatabase } from '@angular/fire/compat/database';
 //import { AngularFireAuth } from '@angular/fire/compat/auth';
 //import { DataTableModule } from 'angular-4-data-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-//import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
@@ -33,6 +37,10 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableOverviewExampleComponent } from './table-overview-example/table-overview-example.component';
+//import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+//import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 
 @NgModule({
@@ -48,38 +56,45 @@ import { ProductService } from './product.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    TableOverviewExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
-    // provideDatabase(() => getDatabase()),
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireDatabase,
-    // AngularFireAuth,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    NgbModule,
+    FormsModule,
+    CustomFormsModule,
+    DataTablesModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
-
+      
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService]},
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
       
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
-      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+      { path: 'admin/products', component: TableOverviewExampleComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
     ]),
-    NgbModule,
-    FormsModule,
-    CustomFormsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule, MatSortModule, MatTableModule, ReactiveFormsModule
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideDatabase(() => getDatabase()),
+    // AngularFireDatabase,
+    // AngularFireAuth,
   ],
+  exports: [MatPaginatorModule, MatSortModule, MatTableModule],
   providers: [AuthService, AuthGuardService, UserService, AdminAuthGuardService, CategoryService, ProductService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
