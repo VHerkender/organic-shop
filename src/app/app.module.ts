@@ -82,7 +82,7 @@ import { TableOverviewExampleComponent } from './table-overview-example/table-ov
       
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
-      { path: 'admin/products', component: TableOverviewExampleComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
     ]),
     BrowserAnimationsModule,
