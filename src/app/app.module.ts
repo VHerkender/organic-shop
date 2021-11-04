@@ -39,6 +39,8 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableOverviewExampleComponent } from './table-overview-example/table-overview-example.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 //import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 //import { provideDatabase,getDatabase } from '@angular/fire/database';
 
@@ -57,7 +59,9 @@ import { TableOverviewExampleComponent } from './table-overview-example/table-ov
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    TableOverviewExampleComponent
+    TableOverviewExampleComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { TableOverviewExampleComponent } from './table-overview-example/table-ov
     DataTablesModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },

@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/product.service';
 })
 export class ProductFormComponent {
   categories$;//: Observable<any[]>;
-  product: {title: '', price: 0, imageUrl: '', category: ''}; // mosh has product = {};
+  product: {title: '', price: 0, imageUrl: '', category: '', id: ''}; // mosh has product = {};
   id;
 
   constructor(
@@ -19,7 +19,7 @@ export class ProductFormComponent {
     private route: ActivatedRoute,
     private categoryService: CategoryService, 
     private productService: ProductService) {
-    this.categories$ = categoryService.getCategories();
+    this.categories$ = categoryService.getAll();
 
     this.id = this.route.snapshot.paramMap.get('id');
     //if (id) this.productService.get(id).valueChanges().subscribe(p => this.product = p); //correct?
